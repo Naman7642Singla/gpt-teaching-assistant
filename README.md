@@ -66,7 +66,8 @@ npm run dev
 3. The backend processes the request and calls the **Gemini-3.5-Turbo API**.
 4. The AI model generates a response, which is sent back to the frontend.
 5. The response is displayed to the user in a chat format.
-
+6. Demo - https://youtu.be/zlWwYBps3oA
+   
 ## Usage Guidelines
 - Ask **specific** questions about your problem.
 - The assistant will provide hints and explanations but will not give **direct solutions**.
