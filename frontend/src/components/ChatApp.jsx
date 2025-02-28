@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { askGemini } from "../api/api"; // Importing API call function
 import { Send, Loader } from "lucide-react";
 
 function ChatApp() {
@@ -14,7 +14,7 @@ function ChatApp() {
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!url.trim() || !question.trim()) return;
+    if (!url.trim() || !question.trim() || loading) return;
 
     setLoading(true);
 
@@ -23,24 +23,25 @@ function ChatApp() {
       text: `Problem URL: ${url}\n\nQuestion: ${question}`,
     };
 
-    setMessages((prev) => [...prev, userMessage, { sender: "AI", text: "Thinking...", temp: true }]);
+    setMessages((prev) => {
+      // Prevent duplicate consecutive messages
+      if (prev.length && prev[prev.length - 1].text === userMessage.text) return prev;
+      return [...prev, userMessage, { sender: "AI", text: "Thinking...", temp: true }];
+    });
 
     try {
-      const response = await axios.post("http://localhost:5001/ask-gemini", { url, doubt: question });
-
-      setMessages((prev) =>
-        prev.filter((msg) => !msg.temp).concat({ sender: "AI", text: response.data.response })
-      );
+      const response = await askGemini(url, question);
+      setMessages((prev) => prev.filter((msg) => !msg.temp).concat({ sender: "AI", text: response }));
     } catch (error) {
-      console.error("Error fetching response:", error);
       setMessages((prev) =>
-        prev.filter((msg) => !msg.temp).concat({ sender: "AI", text: "Error: Could not fetch response. Try again." })
+        prev.filter((msg) => !msg.temp).concat({ sender: "AI", text: `⚠️ ${error.message}` })
       );
+    } finally {
+      setLoading(false);
+      setUrl("");
+      setQuestion("");
+      document.querySelector("textarea").focus(); // Auto-focus the textarea after sending
     }
-
-    setLoading(false);
-    setUrl("");
-    setQuestion("");
   };
 
   const handleKeyDown = (e) => {
