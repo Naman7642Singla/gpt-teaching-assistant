@@ -10,9 +10,6 @@ GPT-Teaching-Assistant/
 │   ├── server.js
 │   ├── package.json
 │   ├── .env_example
-│   ├── routes/
-│   ├── controllers/
-│   └── services/
 ├── frontend/
 │   ├── src/
 │   ├── public/
@@ -46,6 +43,7 @@ node server.js
 ```
 
 ### 3. Frontend Setup
+- Open new terminal
 ```sh
 cd ../frontend
 npm install
