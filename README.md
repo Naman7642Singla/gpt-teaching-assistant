@@ -38,7 +38,8 @@ cd backend
 npm install
 cp .env_example .env
 ```
-- Open `.env` and add your **Gemini API key**:
+- Open `.env` and add your **Gemini API key**: 
+- Create your gemini api key here:- https://aistudio.google.com/app/apikey
 ```
 GEMINI_API_KEY=your_api_key_here
 ```
