@@ -1,66 +1,74 @@
-Here’s your README file with proper setup instructions, including git clone, cd navigation, and environment setup.
+# GPT Teaching Assistant
 
-GPT Teaching Assistant
+## Overview
+This is a GPT-based teaching assistant for Data Structures and Algorithms (DSA) problems. Users can submit a LeetCode problem URL along with their doubts, and the chatbot will guide them through the problem-solving process with hints and intuition-building questions.
 
-Overview
+## Project Structure
+```
+GPT-Teaching-Assistant/
+├── backend/
+│   ├── server.js
+│   ├── package.json
+│   ├── .env_example
+│   ├── routes/
+│   ├── controllers/
+│   └── services/
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   ├── .env
+│   └── components/
+└── README.md
+```
 
-GPT Teaching Assistant is a chat-based application designed to help users understand Data Structures and Algorithms (DSA) problems. Users can submit a LeetCode problem link along with their doubts, and the assistant (powered by GPT/Gemini) provides hints and guidance without revealing direct solutions.
+## Setup Instructions
 
-Features
-	•	Submit LeetCode problem URLs and doubts.
-	•	Interactive chat-based UI for seamless conversations.
-	•	AI-generated hints and thought-provoking questions to guide problem-solving.
+### 1. Clone the Repository
+```sh
+git clone https://github.com/Naman-Bhalla/GPT-Teaching-Assistant.git
+cd GPT-Teaching-Assistant
+```
 
-Installation & Setup
-
-1️⃣ Clone the Repository
-
-git clone https://github.com/Naman7642Singla/gpt-teaching-assistant.git
-cd gpt-teaching-assistant
-
-2️⃣ Backend Setup
-
+### 2. Backend Setup
+```sh
 cd backend
 npm install
-
-	•	Copy .env_example to a new file named .env
-
 cp .env_example .env
-
-	•	Open .env and paste your Gemini API key:
-
+```
+- Open `.env` and add your Gemini API key:
+```
 GEMINI_API_KEY=your_api_key_here
-
-
-	•	Start the backend server
-
+```
+- Start the backend server:
+```sh
 node server.js
+```
 
-3️⃣ Frontend Setup
-
+### 3. Frontend Setup
+```sh
 cd ../frontend
 npm install
 npm run dev
+```
 
-Usage
-	1.	Open the frontend in your browser (default: http://localhost:5173).
-	2.	Enter the LeetCode problem URL and your doubt.
-	3.	The AI assistant will generate hints and responses to help you understand the problem.
+## How It Works
+1. Users input a LeetCode problem link and their doubts in the chat interface.
+2. The frontend sends this data to the backend.
+3. The backend processes the request and interacts with the Gemini API (or GPT-based model).
+4. The assistant provides hints and guidance without revealing the direct solution.
+5. Users receive structured responses that help them build intuition and problem-solving skills.
 
-Folder Structure
+## API Routes (Backend)
+- `POST /ask` → Accepts LeetCode URL and doubt, returns a guided response.
 
-gpt-teaching-assistant/
-│── backend/       # Backend server (Node.js, Express)
-│── frontend/      # Frontend (React, Tailwind CSS)
-│── README.md      # Project documentation
+## Technologies Used
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Node.js, Express.js
+- **AI Model**: Gemini API (or OpenAI GPT)
 
-Technologies Used
-	•	Frontend: React, Tailwind CSS
-	•	Backend: Node.js, Express
-	•	AI Model: Gemini API (or OpenAI GPT)
+## Contribution
+Feel free to contribute by creating pull requests or reporting issues.
 
-Contribution
-
-Feel free to submit pull requests or open issues to improve the project!
-
-Let me know if you need any modifications! 🚀
+## License
+MIT License
