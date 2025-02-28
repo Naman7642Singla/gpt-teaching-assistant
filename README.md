@@ -20,7 +20,6 @@ GPT-Teaching-Assistant/
 │   ├── src/              # React components
 │   ├── public/           # Public assets
 │   ├── package.json      # Frontend dependencies         
-│   └── components/       # UI components
 └── README.md             # Documentation
 ```
 
