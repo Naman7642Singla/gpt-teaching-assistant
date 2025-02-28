@@ -23,7 +23,7 @@ GPT-Teaching-Assistant/
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/Naman7642Singla/GPT-Teaching-Assistant.git
+git clone https://github.com/Naman7642Singla/gpt-teaching-assistant.git
 cd GPT-Teaching-Assistant
 ```
 
