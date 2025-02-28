@@ -7,16 +7,21 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Load API key from environment variables
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
 if (!GEMINI_API_KEY) {
     console.error("Error: Missing GEMINI_API_KEY in .env file");
     process.exit(1);
 }
 
+// Initialize Google Generative AI model
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+/**
+ * POST endpoint to process user queries related to DSA problems.
+ * Expects a LeetCode URL and a doubt as input.
+ */
 app.post('/ask-gemini', async (req, res) => {
     try {
         console.log("Received request:", req.body);
@@ -26,20 +31,20 @@ app.post('/ask-gemini', async (req, res) => {
             return res.status(400).json({ error: "Missing required fields: url and doubt" });
         }
 
-        // Prompt modification: Adding explicit newlines and Markdown formatting
-        const prompt = `You are a DSA mentor. A user has a doubt regarding this LeetCode problem: ${url}.
+        // Structured prompt for enhanced response quality
+        const prompt = `You are an expert DSA mentor. A student needs help with a LeetCode problem: ${url}.
 
-**Doubt:** ${doubt}
+### Student's Doubt:
+${doubt}
 
----
-**Format your response strictly as follows:**
-- Each point should be on a **new line** (do not merge everything into one paragraph).
-- Use bullet points numbers 1,2,).
-- Include clear section headers (e.g., "1 Understanding the Problem").
----
+### Guidelines for your response:
+1. **Understanding the Problem:** Provide a brief explanation of what the problem asks.
+2. **Key Concepts Involved:** Mention the essential data structures and algorithms relevant to the problem.
+3. **Hints & Thought Process:** Guide the student through an approach to solving the problem without revealing the full solution.
+4. **Common Mistakes & Optimizations:** Highlight common pitfalls and possible optimizations.
+5. **Follow-up Questions:** Suggest similar problems or variations to deepen understanding.
 
-
-Make sure the response follows this structured format.`;
+Ensure the response is **clear, structured, and encourages independent thinking.**`;
 
         console.log("🔹 Sending request to Gemini API...");
 
@@ -57,5 +62,6 @@ Make sure the response follows this structured format.`;
     }
 });
 
+// Start the server on port 5001
 const PORT = 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

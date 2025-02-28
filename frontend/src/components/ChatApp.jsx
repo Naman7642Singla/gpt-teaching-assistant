@@ -52,12 +52,10 @@ function ChatApp() {
 
   return (
     <div className="h-screen w-screen flex flex-col bg-gray-100 text-gray-900">
-      {/* Assistant Header */}
       <header className="p-4 bg-white shadow-md text-center text-lg font-semibold text-gray-800">
         DSA Assistant
       </header>
 
-      {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, index) => (
           <div
@@ -75,7 +73,6 @@ function ChatApp() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Chat Input */}
       <div className="p-4 bg-white shadow-md border-t">
         <div className="flex flex-col gap-3 p-4 bg-gray-50 rounded-lg border border-gray-300">
           <input
