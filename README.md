@@ -82,7 +82,7 @@ node server.js
 ### **3. Frontend Setup**
 - Open a new terminal:
 ```sh
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
